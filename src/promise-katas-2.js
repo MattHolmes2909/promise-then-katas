@@ -25,17 +25,41 @@ fetch("joke", "question").then(<insert your callback function>)
 // 1 Create a function that uses the fetch function to make a request to the "food" URL and returns
 // the data - expected return value "Cheese" of type String
 
-const food = () => {};
+const food = () => {
+    //dot notation to get data
+    //fetch api
+    return fetch("food").then((response) => response.data);
+};
 
 // 2 Create a function that uses the fetch function to make a request to the "cats" URL and returns
 // a list of cats in alphabetical order - expected return value ["Bandit", "Berry", "Puss in boots", "Smokey"] of type Array
 
-const cat = () => {};
+const cat = () => {
+    //fetch cats api
+    //arr.sort
+    
+    return fetch("cats").then((response) => response.data.cats.sort())
+};
 
 // 3 Create a function that uses the fetch function to make a request to the "dogs" URL and returns
 // the naughtiest dog - expected return value {name: "Mutley", naughty: 10} of type Object
 
-const dog = () => {};
+const dog = () => {
+    // fetch dog api
+    // arr reduce
+    return fetch("dogs").then((response) => {
+        const arr = response.data.dogs;
+        const badDog = arr.reduce((previousDog, currentDog) => {
+            if (previousDog.naughty > currentDog.naughty) {
+                return previousDog;
+            }
+            return currentDog
+        });
+    return badDog
+    });
+
+    
+};
 
 // 4 Create a function that uses the fetch function to make requests to the "jokes" URL and returns
 // a joke object with the key of question and answer - expected return { 
@@ -47,7 +71,21 @@ const dog = () => {};
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 //
 
-const joke = () => {};
+const joke = () => {
+    // create question and answer object
+    // fetch api to get joke
+    // attach question to joke
+    // fetch api to get answer
+    // attach answer to laugh
+    const laugh = { question: "", answer: "" };
+    fetch("jokes", "question").then((response) => {
+     laugh.question = response.joke
+    });
+    fetch("jokes", "answer").then((response) => {
+    laugh.answer = response.answer
+    });
+    return laugh
+};
 
 module.exports = {
     food,
