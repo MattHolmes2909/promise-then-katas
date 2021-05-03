@@ -37,7 +37,7 @@ const food = () => {
 const cat = () => {
     //fetch cats api
     //arr.sort
-    
+
     return fetch("cats").then((response) => response.data.cats.sort())
 };
 
@@ -76,7 +76,7 @@ const joke = () => {
     // fetch api to get joke
     // attach question to joke
     // fetch api to get answer
-    // attach answer to laugh
+    // attach answer to laugh answer
     const laugh = { question: "", answer: "" };
     fetch("jokes", "question").then((response) => {
      laugh.question = response.joke
